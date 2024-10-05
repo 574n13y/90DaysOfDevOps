@@ -1,11 +1,13 @@
 ### Tasks 
   1. View the content of a file and display line numbers.
    - Let's start by creating a file and adding some values to display line numbers. We've created the `virtualization.txt` file, so let's move on to task 1. 
+   
     ```
       input - 
       574n13y@574n13y/workspace/test$ cat -n virtualization.txt
-    ```
-    ```
+   ```
+   
+   ```
       output - 
        1  'Virtualization'
        2  Virtualization is the process of creating a virtual version of something, typically hardware, an operating system, storage, or network resources. Instead of running directly on physical hardware, virtual instances run on a host machine that emulates the underlying hardware resources.
@@ -20,7 +22,7 @@
        11
        12  Type 1 (Bare Metal): Runs directly on hardware (e.g., VMware ESXi, Microsoft Hyper-V).
        13  Type 2 (Hosted): Runs on top of an existing OS (e.g., VirtualBox, VMware Workstation).
-    ```
+   ```
 
   2. Change the access permissions of files to make them readable, writable, and executable by the owner only.
     - Let's modify the permissions for the `virtualization.txt` file so that only the owner has read, write, and execute permissions. The command to do this will be `chmod 700 virtualization.txt`.
@@ -76,9 +78,9 @@
      574n13y@574n13y:~/workspace$ rm -rf list/
      574n13y@574n13y:~/workspace$ ls -lrth
       total 24K
-     drwxr-xr-x  3 s74n13y s74n13y 4.0K Sep  2 04:46 shell
-     drwxr-xr-x  3 s74n13y s74n13y 20.0K Oct  5 16:00 test
-     s74n13y@574n13y:~/workspace$
+     drwxr-xr-x  3 574n13y 574n13y 4.0K Sep  2 04:46 shell
+     drwxr-xr-x  3 574n13y 574n13y 20.0K Oct  5 16:00 test
+     574n13y@574n13y:~/workspace$
    ```
 
   5. Create a fruits.txt file, add content (one fruit per line), and display the content. 
@@ -95,4 +97,97 @@
      chiku
      Sweet patato
    ```
+  6. Add content in devops.txt (one in each line) - Apple, Mango, Banana, Cherry, Kiwi, Orange, Guava. Then, append "Pineapple" to the end of the file.
+   - Let's create a file named `devops.txt` and add the specified content using the `echo` command. 
+   ```
 
+    574n13y@574n13y:~/workspace/test$ vi devops.txt
+    574n13y@574n13y:~/workspace/test$ cat devops.txt
+     Apple
+     Mango
+     Banana
+     Cherry
+     Kiwi
+     Orange
+     Guava.
+    574n13y@574n13y:~/workspace/test$ echo "Pineapple" >> devops.txt
+    574n13y@574n13y:~/workspace/test$ cat devops.txt
+     Apple
+     Mango
+     Banana
+     Cherry
+     Kiwi
+     Orange
+     Guava.
+     Pineapple
+    s74n13y@574n13y:~/workspace/test$
+
+   ```
+  7. Show the first three fruits from the file in reverse order.
+   - To show the first three fruits from the devops.txt file in reverse order,`tac`
+   ```
+     574n13y@574n13y:~/workspace/test$ head -n 3 devops.txt | tac
+      Banana
+      Mango
+      Apple
+     574n13y@574n13y:~/workspace/test$
+
+   ```
+  8. Show the bottom three fruits from the file, and then sort them alphabetically.
+   - To display the last three fruits from the devops.txt file and sort them alphabetically, `sort`
+  ```
+   574n13y@574n13y:~/workspace/test$ tail -n 3 devops.txt | sort
+    Guava.
+    Orange
+    Pineapple
+   574n13y@574n13y:~/workspace/test$
+  ```
+  9. Create another file Colors.txt, add content (one color per line), and display the content.
+   - To create a file named Colors.txt, add colors to it (one color per line), and then display the content,`echo`
+   ```
+    574n13y@574n13y:~/workspace/test$ echo -e "Red\nGreen\nBlue\nYellow\nOrange" > Colors.txt
+    574n13y@574n13y:~/workspace/test$ cat Colors.txt
+     Red
+     Green
+     Blue
+     Yellow
+     Orange
+    574n13y@574n13y:~/workspace/test$
+   ```
+  10. Add content in Colors.txt (one in each line) - Red, Pink, White, Black, Blue, Orange, Purple, Grey. Then, prepend "Yellow" to the beginning of the file. 
+   - To add the specified colors to Colors.txt and then prepend "Yellow" to the beginning of the file, `echo -e`
+    ```
+     574n13y@574n13y:~/workspace/test$ echo -e "Red\nPink\nWhite\nBlack\nBlue\nOrange\nPurple\nGrey" > Colors.txt
+     574n13y@574n13y:~/workspace/test$ echo "Yellow" | cat - Colors.txt > temp && mv temp Colors.txt
+     574n13y@574n13y:~/workspace/test$ cat Colors.txt
+      Yellow
+      Red
+      Pink
+      White
+      Black
+      Blue
+      Orange
+      Purple
+      Grey
+     574n13y@574n13y:~/workspace/test$
+    ```
+  11. Find and display the lines that are common between fruits.txt and Colors.txt.
+   - To find and display the lines that are common between fruits.txt and Colors.txt, you can use the comm or grep command. First sort both files 
+   ```
+    574n13y@574n13y:~/workspace/test$ sort Colors.txt -o Colors.txt
+    574n13y@574n13y:~/workspace/test$ sort fruits.txt -o fruits.txt
+    574n13y@574n13y:~/workspace/test$ comm -12 fruits.txt Colors.txt
+     Orange
+    574n13y@574n13y:~/workspace/test$ grep -Fxf fruits.txt Colors.txt
+     Orange
+    574n13y@574n13y:~/workspace/test$
+   ```
+  12. Count the number of lines, words, and characters in both fruits.txt and Colors.txt.
+   - To count the number we can use `wc` 
+   ```
+    574n13y@574n13y:~/workspace/test$ wc fruits.txt Colors.txt
+     8   9  58 fruits.txt
+     9   9  52 Colors.txt
+     17  18 110 total
+    574n13y@574n13y:~/workspace/test$
+   ```  
