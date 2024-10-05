@@ -11,6 +11,8 @@ Examples:
 
 - ```ls -i ``` --> list the files and directories with index numbers inodes
 - ``` ls -d */``` --> list only directories.(we can also specify a pattern)
+- ``` ls -lrth ``` ---> will list all files and directories: In long format (-l), Sorted by modification time (-t), but in reverse order (-r), so the oldest files are listed first, With file sizes displayed in a human-readable format (-h).
+
 
 ### Directoy commands
 - ```pwd``` --> print work directory. Gives the present working directory.
@@ -39,3 +41,41 @@ mkdir /home/user/Mydirectory   # make a new folder in a specific location
 
 mkdir -p  A/B/C/D              # make a nested directory
 ```
+
+### Basic Commands
+
+- `cd` - Change directory
+- `pwd` - Show the current working directory
+- `ls` - List directory contents
+- `cp` - Copy files or directories
+- `mv` - Move or rename files or directories
+- `rm` - Remove files or directories
+- `echo` - Print text to the terminal
+- `cat` - Concatenate and display the contents of files
+- `less` - View the contents of a file one page at a time
+- `grep` - Search for a pattern within files
+- `mkdir` - Create a new directory
+- `touch` - Create a new file or update the timestamp of an existing file
+- `chmod` - Change file permissions
+- `man` - Display the manual for a command
+
+
+### Understanding `chmod` Values
+
+The `chmod` command uses numeric values to set file permissions:
+
+- `0` - No permissions (---)
+- `1` - Execute only (--x)
+- `2` - Write only (-w-)
+- `3` - Write and execute (-wx)
+- `4` - Read only (r--)
+- `5` - Read and execute (r-x)
+- `6` - Read and write (rw-)
+- `7` - Read, write, and execute (rwx)
+
+**Example:** `chmod 777` gives read, write, and execute permissions to everyone.
+
+- `r` - Read (4)
+- `w` - Write (2)
+- `x` - Execute (1)
+
