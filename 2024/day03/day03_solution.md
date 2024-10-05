@@ -80,3 +80,19 @@
      drwxr-xr-x  3 s74n13y s74n13y 20.0K Oct  5 16:00 test
      s74n13y@574n13y:~/workspace$
    ```
+
+  5. Create a fruits.txt file, add content (one fruit per line), and display the content. 
+   - Lets create a `fruits.txt` file  via a touch and add content through vi. Lets begin 
+   ```
+    574n13y@574n13y:~/workspace/test$ touch fruits.txt
+    574n13y@574n13y:~/workspace/test$ vi fruits.txt
+    574n13y@574n13y:~/workspace/test$ cat fruits.txt
+     Apple
+     Orange
+     Kiwi
+     Banana
+     Dragon friut
+     chiku
+     Sweet patato
+   ```
+
