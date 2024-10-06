@@ -9,16 +9,16 @@ example -  Checking CPU, memory, disksize and restarting services or space that 
 
   3. Write a Shell Script that prints I will complete #90DaysOfDevOps challenge.
    - We have to create a `s.sh` file where we will write the script and give permission before execution the script.
-    ```
-    574n13y@574n13y:~/workspace/test$ ./s.sh
+   ```
+   574n13y@574n13y:~/workspace/test$ ./s.sh
     I Will Complete #90DaysofDevops Challenge.
-    574n13y@574n13y:~/workspace/test$ cat s.sh
+   574n13y@574n13y:~/workspace/test$ cat s.sh
      #!/bin/bash
 
      echo "I Will Complete #90DaysofDevops Challenge."
 
-     574n13y@574n13y:~/workspace/test$
-    ``` 
+   574n13y@574n13y:~/workspace/test$
+   ``` 
   4. Write a Shell Script that takes user input, input from arguments, and prints the variables.
    -
     ```
