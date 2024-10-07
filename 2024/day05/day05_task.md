@@ -43,14 +43,6 @@ s74n13y@574n13y:~/workspace/test$ ./directories.sh devops 1 90
 Directories created successfully from devops1 to devops90.
 s74n13y@574n13y:~/workspace/test$ ls -lrth
 total 400K
--rw-r--r-- 1 s74n13y s74n13y    6 Oct  3 19:20 README.md
--rwx------ 1 s74n13y s74n13y 2.8K Oct  5 16:00 virtualization.txt
--rw-r--r-- 1 s74n13y s74n13y   55 Oct  5 17:48 devops.txt
--rw-r--r-- 1 s74n13y s74n13y   52 Oct  5 18:14 Colors.txt
--rw-r--r-- 1 s74n13y s74n13y   58 Oct  5 18:14 fruits.txt
--rwx------ 1 s74n13y s74n13y   64 Oct  6 19:57 s.sh
--rwx------ 1 s74n13y s74n13y  320 Oct  6 20:17 print_var.sh
--rwx------ 1 s74n13y s74n13y  252 Oct  6 20:27 if_else.sh
 drwxr-xr-x 2 s74n13y s74n13y 4.0K Oct  7 20:07 0
 -rwx------ 1 s74n13y s74n13y  733 Oct  7 20:14 directories.sh
 drwxr-xr-x 2 s74n13y s74n13y 4.0K Oct  7 20:15 devops1
@@ -148,10 +140,100 @@ s74n13y@574n13y:~/workspace/test$
 2. Create a Script to Backup All Your Work:
 
 Backups are an important part of a DevOps Engineer's day-to-day activities. The video in the references will help you understand how a DevOps Engineer takes backups (it can feel a bit difficult but keep trying, nothing is impossible).
+  ```
+  s74n13y@574n13y:~/workspace/test$ ./backup.sh /home/s74n13y/workspace/test/ test
+Creating backup directory: test
+Compressing /home/s74n13y/workspace/test/ to test/backup_20241007_202531.tar.gz
+Backup completed: test/backup_20241007_202531.tar.gz
+s74n13y@574n13y:~/workspace/test$ ls -lrth
+total 40K
+-rwx------ 1 s74n13y s74n13y 1.4K Oct  7 20:24 backup.sh
+drwxr-xr-x 2 s74n13y s74n13y 4.0K Oct  7 20:25 test
+s74n13y@574n13y:~/workspace/test$ ls -lrth test/
+total 16K
+-rw-r--r-- 1 s74n13y s74n13y 15K Oct  7 20:25 backup_20241007_202531.tar.gz
+s74n13y@574n13y:~/workspace/test$ cat backup.sh
+#!/bin/bash
+
+# Backup script to compress and optionally upload work
+
+# Variables
+SOURCE_DIR=$1    # Directory to backup
+BACKUP_DIR=${2:-"$HOME/backups"}  # Backup directory, defaults to $HOME/backups if not provided
+DATE=$(date +"%Y%m%d_%H%M%S")
+BACKUP_FILE="${BACKUP_DIR}/backup_${DATE}.tar.gz"
+UPLOAD_TO_S3=false   # Set this to true if you want to upload to AWS S3 (optional)
+BUCKET_NAME="your-s3-bucket-name"
+
+# Function to check if directory exists
+check_directory() {
+  if [ ! -d "$1" ]; then
+    echo "Directory $1 does not exist!"
+    exit 1
+  fi
+}
+
+# Function to create backup directory if it doesn't exist
+create_backup_dir() {
+  if [ ! -d "$BACKUP_DIR" ]; then
+    echo "Creating backup directory: $BACKUP_DIR"
+    mkdir -p "$BACKUP_DIR"
+  fi
+}
+
+# Function to compress the source directory
+compress_files() {
+  echo "Compressing $SOURCE_DIR to $BACKUP_FILE"
+  tar -czf "$BACKUP_FILE" -C "$SOURCE_DIR" .
+}
+
+# Function to upload backup to AWS S3 (optional)
+upload_to_s3() {
+  if [ "$UPLOAD_TO_S3" = true ]; then
+    echo "Uploading backup to S3 bucket $BUCKET_NAME..."
+    aws s3 cp "$BACKUP_FILE" "s3://$BUCKET_NAME/"
+  fi
+}
+
+# Main script
+if [ -z "$SOURCE_DIR" ]; then
+  echo "Usage: $0 <source_directory> [backup_directory]"
+  exit 1
+fi
+
+check_directory "$SOURCE_DIR"
+create_backup_dir
+compress_files
+upload_to_s3
+
+echo "Backup completed: $BACKUP_FILE"
+
+s74n13y@574n13y:~/workspace/test$
+
+  ```
 
 3. Read About Cron and Crontab to Automate the Backup Script:
 
 Cron is the system's main scheduler for running jobs or tasks unattended. A command called crontab allows the user to submit, edit, or delete entries to cron. A crontab file is a user file that holds the scheduling information.
+  ```
+  #!/bin/bash
+
+# Variables
+BACKUP_DIR="$HOME/backup"  # Define where the backups will be stored
+SOURCE_DIR="$HOME/work"    # Define the directory to backup
+TIMESTAMP=$(date +'%Y%m%d%H%M%S')  # Get a timestamp for the backup name
+BACKUP_FILE="$BACKUP_DIR/backup-$TIMESTAMP.tar.gz"
+
+# Create backup directory if it doesn't exist
+mkdir -p "$BACKUP_DIR"
+
+# Create the backup
+tar -czvf "$BACKUP_FILE" "$SOURCE_DIR"
+
+# Print message on successful backup
+echo "Backup created at $BACKUP_FILE"
+
+  ```
 
 4. Read About User Management:
 
