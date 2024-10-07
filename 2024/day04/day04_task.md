@@ -49,7 +49,7 @@
     574n13y@574n13y:~/workspace/test$
    ```
   5. Provide an example of an If-Else statement in Shell Scripting by comparing two numbers.
-   -
+   - Example of an IF-else statement is as follow - 
    ```
     574n13y@574n13y:~/workspace/test$ vi if_else.sh
     574n13y@574n13y:~/workspace/test$ sudo chmod 700 if_else.sh
