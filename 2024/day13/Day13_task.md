@@ -89,4 +89,3 @@
      git rebase --continue
      ```
 
-By following these steps, you'll practice feature development, branch management, and Git operations including revert, merge, and rebase.
